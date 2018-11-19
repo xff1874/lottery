@@ -12,11 +12,15 @@ export default class Lottery extends React.Component {
             speed: (props && props.speed) || 100,
             times: (props && props.times) || 0,
             cycle: (props && props.cycle) || 24,
-            prize: (props && props.prize) || 5,
+            prize: (props && props.prize) || 2,
         };
     }
 
     start() {
+        if(this.state.isForbind){
+            alert("你的抽奖次数已经用完")
+            return;
+        }
         this.setState({
             isRolling:true,
         },()=>{
@@ -30,12 +34,13 @@ export default class Lottery extends React.Component {
         this.hightLight();
         let lottery = this.state;
         if (
-            lottery.times > lottery.cycle + 10 &&
+            lottery.times > lottery.cycle  &&
             lottery.prize == lottery.index
         ) {
             clearTimeout(lottery.timer);
             lottery.prize = -1;
             lottery.times = 0;
+            lottery.isForbind = true;
             this.setState({isRolling:false})
         } else {
               if (
@@ -69,25 +74,26 @@ export default class Lottery extends React.Component {
     }
 
     render() {
+        const {imgs} = this.props;
         return (
             <div className="lottery-box">
                 <table>
                     <tbody>
                         <tr>
                             <td className={this.getClazz(0)} >
-                                1
+                                <img src={imgs[0]} />
                             </td>
                             <td className={this.getClazz(1)}>
-                                2
+                                <img src={imgs[1]} />
                             </td>
                             <td className={this.getClazz(2)}>3</td>
                         </tr>
                         <tr>
                             <td className={this.getClazz(7)}>8</td>
                             <td>
-                                { this.state.isRolling? "开始":<a href="#" onClick={this.start.bind(this)}>
+                                { this.state.isRolling? "开始":<span href="#" onClick={this.start.bind(this)}>
                                     开始
-                                </a>}
+                                </span>}
 
                             </td>
                             <td className={this.getClazz(3)}>4</td>
