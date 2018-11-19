@@ -9,9 +9,9 @@ export default class Lottery extends React.Component {
             index: (props && props.index) || 0,
             count: 8,
             timer: 0,
-            speed: (props && props.speed) || 200,
-            times: (props && props.times) || 50,
-            cycle: (props && props.cycle) || 50,
+            speed: (props && props.speed) || 100,
+            times: (props && props.times) || 0,
+            cycle: (props && props.cycle) || 24,
             prize: (props && props.prize) || 5,
         };
     }
@@ -38,25 +38,13 @@ export default class Lottery extends React.Component {
             lottery.times = 0;
             this.setState({isRolling:false})
         } else {
-            if (lottery.times < lottery.cycle) {
-                lottery.speed -= 10;
-            } else if (lottery.times == lottery.cycle) {
-                var index = (Math.random() * lottery.count) | 0;
-                lottery.prize = index;
-            } else {
-                if (
-                    lottery.times > lottery.cycle + 10 &&
-                    ((lottery.prize == 0 && lottery.index == 7) ||
-                        lottery.prize == lottery.index + 1)
+              if (
+                    lottery.times > lottery.cycle
+
                 ) {
-                    lottery.speed += 110;
-                } else {
-                    lottery.speed += 20;
+                    lottery.speed += 50;
                 }
-            }
-            if (lottery.speed < 40) {
-                lottery.speed = 40;
-            }
+
             //console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.prize);
             lottery.timer = setTimeout(this.roll.bind(this), lottery.speed);
         }
@@ -86,10 +74,10 @@ export default class Lottery extends React.Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td className={this.getClazz(0)} ref="item1">
+                            <td className={this.getClazz(0)} >
                                 1
                             </td>
-                            <td className={this.getClazz(1)} ref="item2">
+                            <td className={this.getClazz(1)}>
                                 2
                             </td>
                             <td className={this.getClazz(2)}>3</td>
