@@ -1,0 +1,27 @@
+.lottery-box{
+	width: 454px;
+	margin: 100px auto 0;
+}
+
+.lottery-box table td{
+	width: 150px;
+	height: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #ccc;
+	font-size: 24px;
+	color: #333;
+}
+
+.lottery-box table td a{
+	width: 150px;
+	height: 150px;
+	line-height: 150px;
+	display: block;
+	text-decoration: none;
+}
+
+.lottery-box table td.active{
+	color: red;
+	background-color: yellow;
+}
