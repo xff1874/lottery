@@ -1,6 +1,32 @@
 .lottery-box{
-	width: 454px;
-	margin: 100px auto 0;
+	/* width: 454px;
+	margin: 100px auto 0; */
+	background: yellow;
+	padding:10px;
+}
+
+.lottery-box .row{
+	display: flex;
+	justify-content: space-between;
+}
+.lottery-box .row2{
+	margin:10px 0px;
+}
+
+.lottery-box .cell{
+	width:100px;
+	height: 100px;
+	background:#333;
+	color:#fff;
+	font-size:20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.lottery-box .active{
+	background:blue;
+	opacity: 0.8;
 }
 
 .lottery-box table td{
